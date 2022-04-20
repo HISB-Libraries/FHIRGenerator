@@ -10,7 +10,6 @@
     ],
     "startDate": "01-01-2022",
     "days": 365,
-    "outputFolder": "output",
     "resourceDetails": [{
             "fhirResource": "Observation",
             "codes": [
