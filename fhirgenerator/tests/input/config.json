@@ -10,6 +10,7 @@
     ],
     "startDate": "01-01-2022",
     "days": 365,
+    "usCorePatient": true,
     "resourceDetails": [{
             "fhirResource": "Observation",
             "codes": [
@@ -29,7 +30,7 @@
                 { "system": "http://loinc.org", "code": "87925-4" },
                 { "system": "http://loinc.org", "code": "46203-6" }
             ],
-            "enumSetList": "1:4, 1:32, 1:64",
+            "enumSetList": ["1:4", "1:32", "1:64"],
             "minOccurancesPerCycle": 2,
             "maxOccurancesPerCycle": 3,
             "cycleLengthInDays": 365

@@ -1,7 +1,7 @@
 '''Testing Patient generator'''
 
 import orjson
-from fhirgenerator.resources.bundle import generateBundle
+from fhirgenerator.resources.r4.bundle import generateBundle
 from fhirgenerator.helpers.helpers import default
 
 

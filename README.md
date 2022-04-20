@@ -50,3 +50,15 @@ Python Package for FHIR Resource Generation
 ├── requirements.txt (requirements file for package development)
 └── setup.py (package setup file)
 ```
+
+## US Core Support
+
+Support currently exists for generating the following US Core STU4 Profiles:
+
+* US Core Patient
+    * add this to the configuration file to indicate you want a US Core Patient: `"usCorePatient": true`
+* US Core Condition
+    * currently labels it as a `problem-list-item` for the `category` with a `clinicalStatus` of `active`
+    * to be US Core compliant, you must provide codes in the `resourceDetails` that are from the US Core Condition Code ValueSet (https://www.hl7.org/fhir/us/core/ValueSet-us-core-condition-code.html). Currently, the generator cannot choose a random code from this expansive list, so you must enter options in the configuration
+* US Core Lab Result Observation
+    * to be US Core compliant, you must provide codes in the `resourceDetails` that are from LOINC. Currently, the generator cannot choose a random code from all LOINC codes, so you must enter code options in the configuration

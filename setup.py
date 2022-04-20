@@ -26,5 +26,5 @@ setuptools.setup(
     ],
     package_dir={"": "fhirgenerator"},
     packages=setuptools.find_packages(where="fhirgenerator"),
-    python_requires=">=3.6",
+    python_requires=">=3.10",
 )

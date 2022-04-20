@@ -3,7 +3,7 @@
 import orjson
 from dateutil import parser
 import datetime
-from fhirgenerator.resources.observation import generateObservation
+from fhirgenerator.resources.r4.observation import generateObservation
 from fhirgenerator.helpers.helpers import default
 
 

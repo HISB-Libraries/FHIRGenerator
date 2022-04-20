@@ -19,11 +19,17 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
     random_date = start_date + datetime.timedelta(days=random_number_of_days)
 
     if 'enumSetList' in resource_detail:
-        enum_set_split = resource_detail['enumSetList'].split(',')
-        enum_set_split = [enum.strip(' ') for enum in enum_set_split]
-        if len(enum_set_split[0].split(':')) > 1:
+        enum_set_list = resource_detail['enumSetList']
+        if isinstance(enum_set_list[0], dict):
+            if 'coding' in enum_set_list[0]:
+                value_x_type = 'CodeableConcept'
+                value_x_value = random.choice(enum_set_list)
+            elif 'value' in enum_set_list[0]:
+                value_x_type = 'Quantity'
+                value_x_value = random.choice(enum_set_list)
+        elif len(enum_set_list[0].split(':')) > 1:
             value_x_type = 'Ratio'
-            value_x_titer_choice = random.choice(enum_set_split)
+            value_x_titer_choice = random.choice(enum_set_list)
             value_x_titer_choice_split = value_x_titer_choice.split(':')
             value_x_value = {
                 'numerator': {'value': value_x_titer_choice_split[0]},
@@ -31,7 +37,7 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
             }
         else:
             value_x_type = 'String'
-            value_x_value = random.choice(enum_set_split)
+            value_x_value = random.choice(enum_set_list)
     else:
         min_value = resource_detail['minValue']
         max_value = resource_detail['maxValue']

@@ -3,7 +3,7 @@
 import orjson
 from dateutil import parser
 import datetime
-from fhirgenerator.resources.condition import generateCondition
+from fhirgenerator.resources.r4.condition import generateCondition
 from fhirgenerator.helpers.helpers import default
 
 

@@ -1,7 +1,7 @@
 '''Testing Patient generator'''
 
 import orjson
-from fhirgenerator.resources.patient import generatePatient
+from fhirgenerator.resources.r4.patient import generatePatient
 from fhirgenerator.helpers.helpers import calculateAge, default
 
 
