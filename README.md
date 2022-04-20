@@ -7,9 +7,6 @@ Python Package for FHIR Resource Generation
 ```
 ├── LICENSE
 ├── README.md
-├── dist (folder for package distribution)
-│   ├── fhir-generator-0.0.1.tar.gz
-│   └── fhir_generator-0.0.1-py3-none-any.whl
 ├── fhirgenerator (high-level package folder)
 │   ├── __init__.py
 │   ├── docs (place for documentation of the package)
