@@ -1,7 +1,8 @@
 '''Testing Patient generator'''
 
-from ..resources.patient import generatePatient
-from ..helpers.helpers import calculateAge
+import orjson
+from fhirgenerator.resources.patient import generatePatient
+from fhirgenerator.helpers.helpers import calculateAge, default
 
 
 def testPatientGenerator():
@@ -18,3 +19,9 @@ def testPatientGenerator():
     assert calculateAge(created_resource['birthDate'], start=patient_config['startDate']) == patient_config['age']
     assert isinstance(created_resource['name'], list)
     assert isinstance(created_resource['address'], list)
+    assert created_resource['identifier'][0]['system'] == 'urn:fhirgen:mrn'
+    assert created_resource['identifier'][0]['type']['coding'][0] == {'system': 'http://terminology.hl7.org/CodeSystem/v2-0203', 'code': 'MR'}
+    assert len(created_resource['identifier'][0]['value']) == 11
+
+    with open('fhirgenerator/tests/output/test_patient.json', 'wb') as outfile:
+        outfile.write(orjson.dumps(created_resource, default=default, option=orjson.OPT_NAIVE_UTC))

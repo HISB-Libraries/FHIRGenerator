@@ -7,7 +7,7 @@ configuration_dictionary_template = {
     'ageMin': 0,
     'ageMax': 99,
     'genderMFOU': [47, 47, 1, 5],
-    'startDate': datetime.datetime.today(),
+    'startDate': str(datetime.datetime.today()),
     'days': 365,
     'outputFolder': 'output',
     'resourceDetails': {

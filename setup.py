@@ -4,7 +4,7 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-requirements = ["fhir.resources>=6.2.0", "Faker>=13.3.0"]
+requirements = ["fhir.resources>=6.2.2", "Faker>=13.3.4", "orjson>=3.6.8"]
 
 setuptools.setup(
     name="fhir-generator",

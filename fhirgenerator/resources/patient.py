@@ -8,6 +8,7 @@ from fhir.resources.patient import Patient
 
 from fhirgenerator.types.humanName import generateName
 from fhirgenerator.types.address import generateAddress
+from fhirgenerator.types.identifier import generateMRNIdentifier
 
 gender_map = {
     'M': 'male',
@@ -31,10 +32,11 @@ def generatePatient(configuration: dict) -> dict:
     patient_id = str(uuid.uuid4())
     patient_data = {
         'id': patient_id,
+        'identifier': [generateMRNIdentifier()],
         'name': [generateName(gender=configuration['gender'])],
         'address': [generateAddress()],
         'gender': gender_map[configuration['gender'].upper()],
         'birthDate': generateBirthDateFromAge(configuration['age'], configuration['startDate'])
     }
-    patient_resource = Patient(**patient_data)
-    return patient_resource.dict()
+    patient_resource = Patient(**patient_data).dict()
+    return patient_resource

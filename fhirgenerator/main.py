@@ -1,18 +1,19 @@
 '''Main entrypoint for package'''
 
 from random import randint
-from fhirgenerator.resources import patient
+from fhirgenerator.resources.patient import generatePatient
+from fhirgenerator.resources.observation import generateObservation
+from fhirgenerator.resources.condition import generateCondition
+from fhirgenerator.resources.bundle import generateBundle
 
 
-def generateResources(config_dict: dict) -> dict:
+def generateResources(config_dict: dict, bundle_type: str = 'collection') -> dict:
     '''Main function for generating resources'''
-
-    print(f'Using the following configuration for running this script... {config_dict}')
 
     final_bundle_entries = []
 
     # Getting total numbers of each gender
-    gender_totals = round(config_dict['genderMFOU'] * .01 * config_dict['numberPatients'])
+    gender_totals = [round(value * config_dict['numberPatients'] * .01) for value in config_dict['genderMFOU']]
     if sum(gender_totals) > config_dict['numberPatients']:
         gender_totals[0] -= (sum(gender_totals) - config_dict['numberPatients'])
     elif sum(gender_totals) < config_dict['numberPatients']:
@@ -28,14 +29,32 @@ def generateResources(config_dict: dict) -> dict:
     for i in range(0, gender_totals[3]):
         gender_totals_list.append('U')
 
-    for i in range(0, config_dict['numberPatients']):
+    for j in range(0, config_dict['numberPatients']):
+
         patient_age = randint(config_dict['ageMin'], config_dict['ageMax'])
         patient_config = {
             "age": patient_age,
-            "gender": gender_totals_list[i],
+            "gender": gender_totals_list[j],
             "startDate": config_dict['startDate']
         }
-        patient_resource = patient.generatePatient(patient_config)
-        final_bundle_entries.extend([patient_resource])
+        patient_resource = generatePatient(patient_config)
+        final_bundle_entries.append(patient_resource)
 
-    return final_bundle_entries
+        for resource_detail in config_dict['resourceDetails']:
+            num_of_cycles = round(resource_detail['cycleLengthInDays'] / config_dict['days'])
+            num_of_resources = randint(resource_detail['minOccurancesPerCycle'], resource_detail['maxOccurancesPerCycle']) * num_of_cycles
+            bundle_entry_list = []
+            resource_type = resource_detail['fhirResource']
+            if resource_type == 'Observation':
+                for k in range(0, num_of_resources):
+                    bundle_entry_list.append(generateObservation(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+            if resource_type == 'Condition':
+                for k in range(0, num_of_resources):
+                    bundle_entry_list.append(generateCondition(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+            final_bundle_entries.extend(bundle_entry_list)
+
+        print(f'Patient number {j+1} generated')
+
+    final_bundle = generateBundle(final_bundle_entries, type=bundle_type)
+
+    return final_bundle

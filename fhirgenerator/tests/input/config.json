@@ -1,0 +1,83 @@
+{
+    "numberPatients": 5,
+    "ageMin": 18,
+    "ageMax": 76,
+    "genderMFOU": [
+        47,
+        47,
+        1,
+        5
+    ],
+    "startDate": "01-01-2022",
+    "days": 365,
+    "outputFolder": "output",
+    "resourceDetails": [{
+            "fhirResource": "Observation",
+            "codes": [
+                { "system": "http://loinc.org", "code": "71793-4" },
+                { "system": "http://loinc.org", "code": "5394-2" },
+                { "system": "http://loinc.org", "code": "34382-2" },
+                { "system": "http://loinc.org", "code": "26009-1" },
+                { "system": "http://loinc.org", "code": "22590-4" },
+                { "system": "http://loinc.org", "code": "50695-6" },
+                { "system": "http://loinc.org", "code": "51475-2" },
+                { "system": "http://loinc.org", "code": "47235-7" },
+                { "system": "http://loinc.org", "code": "47476-7" },
+                { "system": "http://loinc.org", "code": "50690-7" },
+                { "system": "http://loinc.org", "code": "31147-2" },
+                { "system": "http://loinc.org", "code": "11084-1" },
+                { "system": "http://loinc.org", "code": "31146-4" },
+                { "system": "http://loinc.org", "code": "87925-4" },
+                { "system": "http://loinc.org", "code": "46203-6" }
+            ],
+            "enumSetList": "1:4, 1:32, 1:64",
+            "minOccurancesPerCycle": 2,
+            "maxOccurancesPerCycle": 3,
+            "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "Condition",
+            "codes": [
+                { "system": "http://snomed.info/sct", "code": "709977002" },
+                { "system": "http://snomed.info/sct", "code": "736686006" },
+                { "system": "http://snomed.info/sct", "code": "418290006" },
+                { "system": "http://snomed.info/sct", "code": "44882003" },
+                { "system": "http://snomed.info/sct", "code": "91554004" },
+                { "system": "http://snomed.info/sct", "code": "405737000" },
+                { "system": "http://snomed.info/sct", "code": "3951002" },
+                { "system": "http://snomed.info/sct", "code": "79342006" },
+                { "system": "http://snomed.info/sct", "code": "297123002" },
+                { "system": "http://snomed.info/sct", "code": "271939006" },
+                { "system": "http://snomed.info/sct", "code": "31070006" },
+                { "system": "http://snomed.info/sct", "code": "248980004" },
+                { "system": "http://snomed.info/sct", "code": "71315007" },
+                { "system": "http://snomed.info/sct", "code": "386661006" },
+                { "system": "http://snomed.info/sct", "code": "30746006" },
+                { "system": "http://snomed.info/sct", "code": "21522001" },
+                { "system": "http://snomed.info/sct", "code": "198199009" },
+                { "system": "http://snomed.info/sct", "code": "271807003" },
+                { "system": "http://snomed.info/sct", "code": "18165001" },
+                { "system": "http://snomed.info/sct", "code": "56317004" }
+            ],
+            "minOccurancesPerCycle": 3,
+            "maxOccurancesPerCycle": 8,
+            "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "Observation",
+            "codes": [
+                { "system": "http://loinc.org", "code": "49498-9" },
+                { "system": "http://loinc.org", "code": "26464-8" },
+                { "system": "http://loinc.org", "code": "804-5" },
+                { "system": "http://loinc.org", "code": "6690-2" },
+                { "system": "http://www.ama-assn.org/go/cpt", "code": "85048" }
+            ],
+            "minValue": 4,
+            "maxValue": 11,
+            "decimalValue": 1,
+            "minOccurancesPerCycle": 2,
+            "maxOccurancesPerCycle": 3,
+            "cycleLengthInDays": 365
+        }
+    ]
+}

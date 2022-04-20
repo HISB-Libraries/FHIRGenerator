@@ -1,0 +1,1 @@
+{"resourceType":"Observation","id":"e86abbf6-178a-4873-b86c-f7c1f77b0615","status":"final","code":{"coding":[{"system":"http://www.ama-assn.org/go/cpt","code":"85048"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"effectiveDateTime":"2022-02-28T00:00:00+00:00","valueQuantity":{"value":6.4}}
