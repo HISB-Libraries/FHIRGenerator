@@ -8,10 +8,10 @@ requirements = ["fhir.resources>=6.2.2", "Faker>=13.3.4", "orjson>=3.6.8"]
 
 setuptools.setup(
     name="fhir-generator",
-    version="0.0.1",
+    version="0.0.2",
     author="Andrew Stevens",
     author_email="andrew.stevens@gtri.gatech.edu",
-    description="A package to generate FHIR Resources",
+    description="A package to generate FHIR Resources using a configuration file",
     install_requires=requirements,
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -20,11 +20,12 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/gt-health/FHIRGenerator/issues",
     },
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     package_dir={"": "fhirgenerator"},
     packages=setuptools.find_packages(where="fhirgenerator"),
     python_requires=">=3.10",
+    scripts=['bin/generate-resources.sh']
 )
