@@ -10,7 +10,7 @@ from fhirgenerator.resources.uscore_r4.handleUSCore import handleUSCore
 from fhirgenerator.resources.uscore_r4.usCorePatient import generateUSCorePatient
 
 
-def generateResources(config_dict: dict) -> dict:
+def generateResources(config_dict: dict, bundle_type: str = 'collection') -> dict:
     '''Main function for generating resources'''
 
     final_bundle_entries = []
@@ -66,8 +66,7 @@ def generateResources(config_dict: dict) -> dict:
 
     if 'bundleType' in config_dict:
         bundle_type = config_dict['bundleType']
-    else:
-        bundle_type = 'collection'
+
     final_bundle = generateBundle(final_bundle_entries, type=bundle_type)
 
     return final_bundle
