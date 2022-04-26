@@ -4,9 +4,6 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-with open("HISTORY.md", "r", encoding="utf-8") as history_file:
-    history = history_file.read()
-
 requirements = ["fhir.resources>=6.2.2", "Faker>=13.3.4", "orjson>=3.6.8"]
 
 setuptools.setup(
