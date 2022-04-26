@@ -1,6 +1,8 @@
 '''Testing Main function'''
 
 import orjson
+import datetime
+from dateutil import parser
 from fhirgenerator.main import generateResources
 from fhirgenerator.helpers.helpers import default
 
@@ -22,5 +24,45 @@ def testMain():
     patient_list_collection = list(filter(lambda entry: entry['resource']['resourceType'] == 'Patient', output_collection_bundle['entry']))
     patient_list_transaction = list(filter(lambda entry: entry['resource']['resourceType'] == 'Patient', output_trans_bundle['entry']))
 
+    observation_list_collection = list(filter(lambda entry: entry['resource']['resourceType'] == 'Observation', output_collection_bundle['entry']))
+    observation_list_transaction = list(filter(lambda entry: entry['resource']['resourceType'] == 'Observation', output_trans_bundle['entry']))
+
+    observation_dates_collection = [resource['resource']['effectiveDateTime'] for resource in observation_list_collection]
+    observation_dates_transaction = [resource['resource']['effectiveDateTime'] for resource in observation_list_transaction]
+
+    condition_list_collection = list(filter(lambda entry: entry['resource']['resourceType'] == 'Condition', output_collection_bundle['entry']))
+    condition_list_transaction = list(filter(lambda entry: entry['resource']['resourceType'] == 'Condition', output_trans_bundle['entry']))
+
+    condition_dates_collection = [resource['resource']['onsetDateTime'] for resource in condition_list_collection]
+    condition_dates_transaction = [resource['resource']['onsetDateTime'] for resource in condition_list_transaction]
+
+    obs_mins = [detail['minOccurancesPerCycle'] if detail['fhirResource'] == 'Observation' else 0 for detail in config_dict['resourceDetails']]
+    obs_maxs = [detail['maxOccurancesPerCycle'] if detail['fhirResource'] == 'Observation' else 0 for detail in config_dict['resourceDetails']]
+    min_num_of_observations = config_dict['numberPatients'] * sum(obs_mins)
+    max_num_of_observations = config_dict['numberPatients'] * sum(obs_maxs)
+
+    con_mins = [detail['minOccurancesPerCycle'] if detail['fhirResource'] == 'Condition' else 0 for detail in config_dict['resourceDetails']]
+    con_maxs = [detail['maxOccurancesPerCycle'] if detail['fhirResource'] == 'Condition' else 0 for detail in config_dict['resourceDetails']]
+    min_num_of_conditions = config_dict['numberPatients'] * sum(con_mins)
+    max_num_of_conditions = config_dict['numberPatients'] * sum(con_maxs)
+
+    start_date = parser.parse(config_dict['startDate'])
+    end_date = start_date + datetime.timedelta(days=config_dict['days'])
+
+    obs_dates_in_range_collection = [date_time >= start_date and date_time <= end_date for date_time in observation_dates_collection]
+    obs_dates_in_range_transaction = [date_time >= start_date and date_time <= end_date for date_time in observation_dates_transaction]
+
+    con_dates_in_range_collection = [date_time >= start_date and date_time <= end_date for date_time in condition_dates_collection]
+    con_dates_in_range_transaction = [date_time >= start_date and date_time <= end_date for date_time in condition_dates_transaction]
+
     assert len(patient_list_collection) == config_dict['numberPatients']
+    assert len(observation_list_collection) >= min_num_of_observations and len(observation_list_collection) <= max_num_of_observations
+    assert all(obs_dates_in_range_collection)
+    assert len(condition_list_collection) >= min_num_of_conditions and len(condition_list_collection) <= max_num_of_conditions
+    assert all(con_dates_in_range_collection)
+
     assert len(patient_list_transaction) == config_dict['numberPatients']
+    assert len(observation_list_transaction) >= min_num_of_observations and len(observation_list_transaction) <= max_num_of_observations
+    assert all(obs_dates_in_range_transaction)
+    assert len(condition_list_transaction) >= min_num_of_conditions and len(condition_list_transaction) <= max_num_of_conditions
+    assert all(con_dates_in_range_transaction)

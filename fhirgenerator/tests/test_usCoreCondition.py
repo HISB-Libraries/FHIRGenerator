@@ -9,7 +9,7 @@ from fhirgenerator.helpers.helpers import default
 
 def testUSCoreConditionGenerator():
     '''Test function for US Core Condition Generator'''
-    with open('fhirgenerator/tests/input/config.json', 'rb') as infile:
+    with open('fhirgenerator/tests/input/config_usCore.json', 'rb') as infile:
         config_dict = orjson.loads(infile.read())
 
     patient_id = '26774-827647-736278-3737646'

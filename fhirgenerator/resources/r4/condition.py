@@ -2,9 +2,9 @@
 
 import uuid
 import random
-import datetime
-from dateutil import parser
 from fhir.resources.condition import Condition
+
+from fhirgenerator.helpers.helpers import makeRandomDate
 
 
 def generateCondition(resource_detail: dict, patient_id: str, start_date: str, days: int) -> dict:
@@ -14,9 +14,7 @@ def generateCondition(resource_detail: dict, patient_id: str, start_date: str, d
 
     condition_code = random.choice(resource_detail['codes'])
 
-    start_date = parser.parse(start_date)
-    random_number_of_days = random.randrange(days)
-    random_date = start_date + datetime.timedelta(days=random_number_of_days)
+    random_date = makeRandomDate(start_date, days)
 
     condition_data = {
         'id': condition_id,

@@ -1,12 +1,16 @@
 '''Main entrypoint for package'''
 
 from random import randint
+
+from fhirgenerator.resources.r4.encounter import generateEncounter
 from fhirgenerator.resources.r4.patient import generatePatient
 from fhirgenerator.resources.r4.observation import generateObservation
 from fhirgenerator.resources.r4.condition import generateCondition
 from fhirgenerator.resources.r4.bundle import generateBundle
-from fhirgenerator.resources.uscore_r4.handleUSCore import handleUSCore
+from fhirgenerator.resources.r4.medicationStatement import generateMedicationStatement
+from fhirgenerator.resources.r4.procedure import generateProcedure
 
+from fhirgenerator.resources.uscore_r4.handleUSCore import handleUSCore
 from fhirgenerator.resources.uscore_r4.usCorePatient import generateUSCorePatient
 
 
@@ -60,6 +64,15 @@ def generateResources(config_dict: dict, bundle_type: str = 'collection') -> dic
             elif resource_type == 'Condition':
                 for k in range(0, num_of_resources):
                     bundle_entry_list.append(generateCondition(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+            elif resource_type == 'Procedure':
+                for k in range(0, num_of_resources):
+                    bundle_entry_list.append(generateProcedure(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+            elif resource_type == 'MedicationStatement':
+                for k in range(0, num_of_resources):
+                    bundle_entry_list.append(generateMedicationStatement(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+            elif resource_type == 'Encounter':
+                for k in range(0, num_of_resources):
+                    bundle_entry_list.append(generateEncounter(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
             final_bundle_entries.extend(bundle_entry_list)
 
         print(f'Patient number {j+1} generated')

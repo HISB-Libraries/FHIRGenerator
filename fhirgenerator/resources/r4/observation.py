@@ -2,9 +2,9 @@
 
 import uuid
 import random
-import datetime
-from dateutil import parser
 from fhir.resources.observation import Observation
+
+from fhirgenerator.helpers.helpers import makeRandomDate
 
 
 def generateObservation(resource_detail: dict, patient_id: str, start_date: str, days: int) -> dict:
@@ -14,14 +14,12 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
 
     observation_code = random.choice(resource_detail['codes'])
 
-    start_date = parser.parse(start_date)
-    random_number_of_days = random.randrange(days)
-    random_date = start_date + datetime.timedelta(days=random_number_of_days)
+    random_date = makeRandomDate(start_date, days)
 
     if 'enumSetList' in resource_detail:
         enum_set_list = resource_detail['enumSetList']
         if isinstance(enum_set_list[0], dict):
-            if 'coding' in enum_set_list[0]:
+            if 'system' in enum_set_list[0]:
                 value_x_type = 'CodeableConcept'
                 value_x_value = random.choice(enum_set_list)
             elif 'value' in enum_set_list[0]:
@@ -35,17 +33,39 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
                 'numerator': {'value': value_x_titer_choice_split[0]},
                 'denominator': {'value': value_x_titer_choice_split[1]}
             }
+        elif enum_set_list[0].isnumeric():
+            value_x_type = 'Integer'
+            value_x_value = random.choice(enum_set_list)
         else:
             value_x_type = 'String'
             value_x_value = random.choice(enum_set_list)
     else:
         min_value = resource_detail['minValue']
         max_value = resource_detail['maxValue']
-        decimal_value = resource_detail['decimalValue']
-        value_x_type = 'Quantity'
-        value_x_value = {
-            'value': round(random.uniform(min_value, max_value), decimal_value)
-        }
+        if 'decimalValue' in resource_detail:
+            decimal_value = resource_detail['decimalValue']
+            value_x_type = 'Quantity'
+            value_x_value = {
+                'value': round(random.uniform(min_value, max_value), decimal_value)
+            }
+            if 'unit' in resource_detail:
+                system, code, display = resource_detail['unit'].split('^')
+                value_x_value['unit'] = display
+                value_x_value['system'] = system
+                value_x_value['code'] = code
+        else:
+            if 'unit' in resource_detail:
+                value_x_type = 'Quantity'
+                system, code, display = resource_detail['unit'].split('^')
+                value_x_value = {
+                    'value': round(random.uniform(min_value, max_value)),
+                    'unit': display,
+                    'system': system,
+                    'code': code
+                }
+            else:
+                value_x_type = 'Integer'
+                value_x_value = round(random.uniform(min_value, max_value))
 
     observation_data = {
         'id': observation_id,
