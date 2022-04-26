@@ -30,8 +30,8 @@
                 { "system": "http://loinc.org", "code": "46203-6" }
             ],
             "enumSetList": ["1:4", "1:32", "1:64"],
-            "minOccurancesPerCycle": 2,
-            "maxOccurancesPerCycle": 3,
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
         },
         {
@@ -58,8 +58,8 @@
                 { "system": "http://snomed.info/sct", "code": "18165001" },
                 { "system": "http://snomed.info/sct", "code": "56317004" }
             ],
-            "minOccurancesPerCycle": 3,
-            "maxOccurancesPerCycle": 8,
+            "minOccurrencesPerCycle": 3,
+            "maxOccurrencesPerCycle": 8,
             "cycleLengthInDays": 365
         },
         {
@@ -74,8 +74,8 @@
             "minValue": 4,
             "maxValue": 11,
             "decimalValue": 1,
-            "minOccurancesPerCycle": 2,
-            "maxOccurancesPerCycle": 3,
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
         },
         {
@@ -87,8 +87,8 @@
                 { "system": "http://snomed.info/sct", "code": "189009" },
                 { "system": "http://snomed.info/sct", "code": "647000" }
             ],
-            "minOccurancesPerCycle": 3,
-            "maxOccurancesPerCycle": 3,
+            "minOccurrencesPerCycle": 3,
+            "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
         },
         {
@@ -103,8 +103,8 @@
                 { "system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "2193" }
             ],
             "enumSetList": ["1 http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm^TAB^TAB", "2 http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm^TAB^TAB"],
-            "minOccurancesPerCycle": 1,
-            "maxOccurancesPerCycle": 8,
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 8,
             "cycleLengthInDays": 365
         },
         {
@@ -115,8 +115,8 @@
                 { "system": "http://terminology.hl7.org/CodeSystem/encounter-type", "code": "CCS60" },
                 { "system": "http://terminology.hl7.org/CodeSystem/encounter-type", "code": "OKI" }
             ],
-            "minOccurancesPerCycle": 2,
-            "maxOccurancesPerCycle": 3,
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
         }
     ]

@@ -32,8 +32,8 @@
                 { "system": "http://loinc.org", "code": "46203-6" }
             ],
             "enumSetList": ["1:4", "1:32", "1:64"],
-            "minOccurancesPerCycle": 2,
-            "maxOccurancesPerCycle": 3,
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
         },
         {
@@ -60,8 +60,8 @@
                 { "system": "http://snomed.info/sct", "code": "18165001" },
                 { "system": "http://snomed.info/sct", "code": "56317004" }
             ],
-            "minOccurancesPerCycle": 3,
-            "maxOccurancesPerCycle": 8,
+            "minOccurrencesPerCycle": 3,
+            "maxOccurrencesPerCycle": 8,
             "cycleLengthInDays": 365
         },
         {
@@ -76,8 +76,8 @@
             "minValue": 4,
             "maxValue": 11,
             "decimalValue": 1,
-            "minOccurancesPerCycle": 2,
-            "maxOccurancesPerCycle": 3,
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
         }
     ]

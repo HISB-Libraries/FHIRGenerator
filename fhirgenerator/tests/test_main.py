@@ -36,13 +36,13 @@ def testMain():
     condition_dates_collection = [resource['resource']['onsetDateTime'] for resource in condition_list_collection]
     condition_dates_transaction = [resource['resource']['onsetDateTime'] for resource in condition_list_transaction]
 
-    obs_mins = [detail['minOccurancesPerCycle'] if detail['fhirResource'] == 'Observation' else 0 for detail in config_dict['resourceDetails']]
-    obs_maxs = [detail['maxOccurancesPerCycle'] if detail['fhirResource'] == 'Observation' else 0 for detail in config_dict['resourceDetails']]
+    obs_mins = [detail['minOccurrencesPerCycle'] if detail['fhirResource'] == 'Observation' else 0 for detail in config_dict['resourceDetails']]
+    obs_maxs = [detail['maxOccurrencesPerCycle'] if detail['fhirResource'] == 'Observation' else 0 for detail in config_dict['resourceDetails']]
     min_num_of_observations = config_dict['numberPatients'] * sum(obs_mins)
     max_num_of_observations = config_dict['numberPatients'] * sum(obs_maxs)
 
-    con_mins = [detail['minOccurancesPerCycle'] if detail['fhirResource'] == 'Condition' else 0 for detail in config_dict['resourceDetails']]
-    con_maxs = [detail['maxOccurancesPerCycle'] if detail['fhirResource'] == 'Condition' else 0 for detail in config_dict['resourceDetails']]
+    con_mins = [detail['minOccurrencesPerCycle'] if detail['fhirResource'] == 'Condition' else 0 for detail in config_dict['resourceDetails']]
+    con_maxs = [detail['maxOccurrencesPerCycle'] if detail['fhirResource'] == 'Condition' else 0 for detail in config_dict['resourceDetails']]
     min_num_of_conditions = config_dict['numberPatients'] * sum(con_mins)
     max_num_of_conditions = config_dict['numberPatients'] * sum(con_maxs)
 

@@ -19,8 +19,8 @@ configuration_dictionary_template = {
         'maxValue': 10,
         'decimalValue': 1,
         'enumSetList': '',
-        'minOccurancesPerCycle': 1,
-        'maxOccurancesPerCycle': 1,
+        'minOccurrencesPerCycle': 1,
+        'maxOccurrencesPerCycle': 1,
         'cycleLengthInDays': 365
     }
 }

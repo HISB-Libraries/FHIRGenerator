@@ -1,1 +1,1 @@
-{"resourceType":"Procedure","id":"cb751d52-1384-4afc-9ded-f5515a8f185a","status":"completed","code":{"coding":[{"system":"http://snomed.info/sct","code":"146005"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"performedDateTime":"2022-04-23T00:00:00+00:00"}
+{"resourceType":"Procedure","id":"b989ab2a-1d3f-41d7-bde4-2a6808aeb11f","status":"completed","code":{"coding":[{"system":"http://snomed.info/sct","code":"104001"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"performedDateTime":"2022-04-06T00:00:00+00:00"}

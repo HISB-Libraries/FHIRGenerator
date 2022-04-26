@@ -53,7 +53,7 @@ def generateResources(config_dict: dict, bundle_type: str = 'collection') -> dic
         for resource_detail in config_dict['resourceDetails']:
             bundle_entry_list = []
             num_of_cycles = round(resource_detail['cycleLengthInDays'] / config_dict['days'])
-            num_of_resources = randint(resource_detail['minOccurancesPerCycle'], resource_detail['maxOccurancesPerCycle']) * num_of_cycles
+            num_of_resources = randint(resource_detail['minOccurrencesPerCycle'], resource_detail['maxOccurrencesPerCycle']) * num_of_cycles
             resource_type = resource_detail['fhirResource']
             if (resource_type.lower()[0:6]) == 'uscore':
                 for k in range(0, num_of_resources):
