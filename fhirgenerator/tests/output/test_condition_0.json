@@ -1,1 +1,0 @@
-{"resourceType":"Condition","id":"49b64d06-85b6-4756-877a-c93b62ee70dd","code":{"coding":[{"system":"http://snomed.info/sct","code":"709977002"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"onsetDateTime":"2022-04-22T00:00:00+00:00"}

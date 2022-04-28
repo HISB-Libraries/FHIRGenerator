@@ -119,7 +119,11 @@ Support currently exists for generating the following US Core STU4 Profiles:
 
 # History
 
-## 0.0.6 (unreleased)
+## 0.0.7
+
+* Added US Core Body Weight, US Core Body Temperature, US Core Heart Rate
+
+## 0.0.6
 
 * Improve README to have better documentation for each resource type in resource details
 * Fix spelling error of occurrence

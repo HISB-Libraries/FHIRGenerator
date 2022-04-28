@@ -83,8 +83,9 @@
             "fhirResource": "USCoreBMIObservation",
             "minValue": 10,
             "maxValue": 30,
-            "decimalValue": 1,
-            "minOccurrencesPerCycle": 2,
+            "decimalValue": 2,
+            "unit": "http://unitsofmeasure.org^kg/m2^kg/m2",
+            "minOccurrencesPerCycle": 1,
             "maxOccurrencesPerCycle": 2,
             "cycleLengthInDays": 365
         },
@@ -92,19 +93,40 @@
             "fhirResource": "USCoreHeadCircumferenceObservation",
             "minValue": 1,
             "maxValue": 10,
-            "unit": "UCUM^[in_i]^Inch",
+            "unit": "http://unitsofmeasure.org^[in_i]^Inch",
             "decimalValue": 1,
             "minOccurrencesPerCycle": 1,
-            "maxOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 2,
             "cycleLengthInDays": 365
         },
         {
             "fhirResource": "USCoreBodyHeightObservation",
             "minValue": 60,
             "maxValue": 84,
-            "unit": "UCUM^[in_i]^Inch",
-            "minOccurrencesPerCycle": 2,
-            "maxOccurrencesPerCycle": 3,
+            "decimalValue": 1,
+            "unit": "http://unitsofmeasure.org^[in_i]^Inch",
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 2,
+            "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "USCoreBodyWeightObservation",
+            "minValue": 20,
+            "maxValue": 150,
+            "decimalValue": 2,
+            "unit": "http://unitsofmeasure.org^kg^kilogram",
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 2,
+            "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "USCoreHeartRateObservation",
+            "minValue": 40,
+            "maxValue": 160,
+            "decimalValue": 0,
+            "unit": "http://unitsofmeasure.org^/min^per minute",
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 2,
             "cycleLengthInDays": 365
         }
     ]

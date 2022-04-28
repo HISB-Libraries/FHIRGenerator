@@ -15,9 +15,9 @@ setuptools.setup(
     install_requires=requirements,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gt-health/FHIRGenerator",
+    url="https://github.com/SmartChartSuite/FHIRGenerator",
     project_urls={
-        "Bug Tracker": "https://github.com/gt-health/FHIRGenerator/issues",
+        "Bug Tracker": "https://github.com/SmartChartSuite/FHIRGenerator/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3.10",

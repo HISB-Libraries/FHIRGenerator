@@ -34,6 +34,10 @@ def testUSCoreBodyHeightObservationGenerator():
         assert created_resource['code']['coding'][0] == {'system': 'http://loinc.org', 'code': '8302-2'}
         assert (created_resource['effectiveDateTime'] >= parser.parse(config_dict['startDate'])) and (created_resource['effectiveDateTime'] <= parser.parse(config_dict['startDate']) + datetime.timedelta(days=config_dict['days']))
         assert created_resource['subject']['reference'] == f'Patient/{patient_id}'
+        assert 'value' in created_resource['valueQuantity']
+        assert 'unit' in created_resource['valueQuantity']
+        assert 'system' in created_resource['valueQuantity']
+        assert 'code' in created_resource['valueQuantity']
 
         with open(f'fhirgenerator/tests/output/test_usCoreBodyHeightObservation_{i}.json', 'wb') as outfile:
             outfile.write(orjson.dumps(created_resource, default=default, option=orjson.OPT_NAIVE_UTC))

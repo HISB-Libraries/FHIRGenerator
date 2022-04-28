@@ -48,6 +48,8 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
             value_x_value = {
                 'value': round(random.uniform(min_value, max_value), decimal_value)
             }
+            if decimal_value == 0:
+                value_x_value['value'] = float(value_x_value['value'])
             if 'unit' in resource_detail:
                 system, code, display = resource_detail['unit'].split('^')
                 value_x_value['unit'] = display
