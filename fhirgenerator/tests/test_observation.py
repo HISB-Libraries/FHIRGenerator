@@ -69,3 +69,6 @@ def testObservationGenerator():
 
         with open(f'fhirgenerator/tests/output/test_observation_{i}.json', 'wb') as outfile:
             outfile.write(orjson.dumps(created_resource, default=default, option=orjson.OPT_NAIVE_UTC))
+
+
+# TODO: write more observation tests for all possible value[x] that the package supports

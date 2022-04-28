@@ -6,6 +6,7 @@ from fhirgenerator.resources.uscore_r4.usCoreBodyTemperatureObservation import g
 from fhirgenerator.resources.uscore_r4.usCoreBodyWeightObservation import generateUSCoreBodyWeightObservation
 from fhirgenerator.resources.uscore_r4.usCoreCondition import generateUSCoreCondition
 from fhirgenerator.resources.uscore_r4.usCoreHeadCircumferenceObservation import generateUSCoreHeadCircumferenceObservation
+from fhirgenerator.resources.uscore_r4.usCoreHeartRateObservation import generateUSCoreHeartRateObservation
 from fhirgenerator.resources.uscore_r4.usCoreLabResultObservation import generateUSCoreLabResultObservation
 
 
@@ -14,19 +15,21 @@ def handleUSCore(resource_detail: dict, patient_id: str, start_date: str, days: 
 
     resource_type = resource_detail['fhirResource']
     match resource_type:
-        case ['USCoreCondition']:
-            return_resource = generateUSCoreCondition()
-        case ['USCoreLaboratoryResultObservation']:
-            return_resource = generateUSCoreLabResultObservation()
-        case ['USCoreBMIObservation']:
-            return_resource = generateUSCoreBMIObservation()
-        case ['USCoreHeadCircumferenceObservation']:
-            return_resource = generateUSCoreHeadCircumferenceObservation()
-        case ['USCoreBodyHeightObservation']:
-            return_resource = generateUSCoreBodyHeightObservation()
-        case ['USCoreBodyWeightObservation']:
-            return_resource = generateUSCoreBodyWeightObservation()
-        case ['USCoreBodyTemperatureObservation']:
-            return_resource = generateUSCoreBodyTemperatureObservation()
+        case 'USCoreCondition':
+            return_resource = generateUSCoreCondition(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreLabResultObservation':
+            return_resource = generateUSCoreLabResultObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreBMIObservation':
+            return_resource = generateUSCoreBMIObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreHeadCircumferenceObservation':
+            return_resource = generateUSCoreHeadCircumferenceObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreBodyHeightObservation':
+            return_resource = generateUSCoreBodyHeightObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreBodyWeightObservation':
+            return_resource = generateUSCoreBodyWeightObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreBodyTemperatureObservation':
+            return_resource = generateUSCoreBodyTemperatureObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreHeartRateObservation':
+            return_resource = generateUSCoreHeartRateObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
 
     return return_resource
