@@ -1,0 +1,1 @@
+{"resourceType":"Observation","id":"4b1a666f-f4df-4e72-9b73-0a6034ce3f57","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"31147-2"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"effectiveDateTime":"2022-10-05T00:00:00+00:00","valueRatio":{"numerator":{"value":1.0},"denominator":{"value":4.0}}}

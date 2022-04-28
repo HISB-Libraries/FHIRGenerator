@@ -133,6 +133,3 @@ dmypy.json
 
 # VS Code
 .vscode
-
-# Output of Tests
-output/
