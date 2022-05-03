@@ -122,6 +122,7 @@ Support currently exists for generating the following US Core STU4 Profiles:
 ## 0.0.7
 
 * Added US Core Body Weight, US Core Body Temperature, US Core Heart Rate
+* Added support for not generating `Observation.value[x]` to avoid errors in any wrappers
 
 ## 0.0.6
 

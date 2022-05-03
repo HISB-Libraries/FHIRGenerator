@@ -80,6 +80,15 @@
             "cycleLengthInDays": 365
         },
         {
+            "fhirResource": "Observation",
+            "codes": [
+                { "system": "http://loinc.org", "code": "49498-9" }
+            ],
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
+            "cycleLengthInDays": 365
+        },
+        {
             "fhirResource": "Procedure",
             "codes": [
                 { "system": "http://snomed.info/sct", "code": "104001" },

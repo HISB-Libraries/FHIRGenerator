@@ -39,7 +39,7 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
         else:
             value_x_type = 'String'
             value_x_value = random.choice(enum_set_list)
-    else:
+    elif 'minValue' in resource_detail and 'maxValue' in resource_detail:
         min_value = resource_detail['minValue']
         max_value = resource_detail['maxValue']
         if 'decimalValue' in resource_detail:
@@ -68,6 +68,10 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
             else:
                 value_x_type = 'Integer'
                 value_x_value = round(random.uniform(min_value, max_value))
+    else:
+        print("Warning: There was no enumSetList or (minValue and maxValue) in your configuration for this Observation. This Observation will not have a value[x].")
+        value_x_type = 'None'
+        value_x_value = ''
 
     observation_data = {
         'id': observation_id,
@@ -83,6 +87,9 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
         'effectiveDateTime': str(random_date),
         f'value{value_x_type}': value_x_value
     }
+
+    if 'valueNone' in observation_data:
+        del observation_data['valueNone']
 
     observation_resource = Observation(**observation_data).dict()
     return observation_resource
