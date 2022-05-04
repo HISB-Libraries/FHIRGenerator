@@ -119,7 +119,11 @@ Support currently exists for generating the following US Core STU4 Profiles:
 
 # History
 
-## 0.0.8 (unreleased)
+## 0.0.9 (unreleased)
+
+* Add US Core Race and Ethnicity to US Core Patients
+
+## 0.0.8
 
 * If decimal is .0, its stored as an integer in the data
 * Add zip codes and phone numbers to Patients

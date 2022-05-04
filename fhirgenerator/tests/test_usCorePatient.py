@@ -16,6 +16,8 @@ def testUSCorePatientGenerator():
 
     assert created_resource['resourceType'] == 'Patient'
     assert created_resource['meta']['profile'][0] == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'
+    assert created_resource['extension'][0]['url'] in ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-race', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity']
+    assert created_resource['extension'][1]['url'] in ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-race', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity']
     assert created_resource['gender'] == 'female'
     assert calculateAge(created_resource['birthDate'], start=patient_config['startDate']) == patient_config['age']
     assert isinstance(created_resource['name'], list)

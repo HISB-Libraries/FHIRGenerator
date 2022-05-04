@@ -8,7 +8,7 @@ requirements = ["fhir.resources>=6.2.2", "Faker>=13.3.4", "orjson>=3.6.8"]
 
 setuptools.setup(
     name="fhirgenerator",
-    version="0.0.8",
+    version="0.0.9",
     author="Andrew Stevens",
     author_email="andrew.stevens@gtri.gatech.edu",
     description="A package to generate FHIR Resources using a configuration file",
