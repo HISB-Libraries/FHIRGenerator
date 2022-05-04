@@ -119,6 +119,11 @@ Support currently exists for generating the following US Core STU4 Profiles:
 
 # History
 
+## 0.0.8 (unreleased)
+
+* If decimal is .0, its stored as an integer in the data
+* Add zip codes and phone numbers to Patients
+
 ## 0.0.7
 
 * Added US Core Body Weight, US Core Body Temperature, US Core Heart Rate

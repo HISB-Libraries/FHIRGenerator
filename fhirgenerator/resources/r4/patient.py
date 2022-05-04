@@ -4,6 +4,7 @@ import uuid
 import random
 import datetime
 from dateutil import parser
+from faker import Faker
 from fhir.resources.patient import Patient
 
 from fhirgenerator.types.humanName import generateName
@@ -29,12 +30,15 @@ def generateBirthDateFromAge(age: int, startDate: str) -> str:
 def generatePatient(configuration: dict) -> dict:
     '''Generate Patient Resource'''
 
+    fake = Faker()
+
     patient_id = str(uuid.uuid4())
     patient_data = {
         'id': patient_id,
         'identifier': [generateMRNIdentifier()],
         'name': [generateName(gender=configuration['gender'])],
         'address': [generateAddress()],
+        'telecom': [{'system': 'phone', 'use': 'home', 'value': fake.phone_number()}],
         'gender': gender_map[configuration['gender'].upper()],
         'birthDate': generateBirthDateFromAge(configuration['age'], configuration['startDate'])
     }

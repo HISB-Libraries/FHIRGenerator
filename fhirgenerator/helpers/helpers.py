@@ -14,9 +14,13 @@ def calculateAge(birthDate: datetime.datetime, start: str = str(datetime.date.to
 
 
 def default(obj):
-    '''Callable function for JSON serialization of Decimal types'''
+    '''Callable function for JSON serialization of non-supported types'''
     if isinstance(obj, decimal.Decimal):
-        return float(str(obj))
+        if float(str(obj)).is_integer():
+            print('Found decimal to be int')
+            return int(float(str(obj)))
+        else:
+            return float(str(obj))
     raise TypeError
 
 
