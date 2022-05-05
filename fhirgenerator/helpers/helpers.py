@@ -17,7 +17,6 @@ def default(obj):
     '''Callable function for JSON serialization of non-supported types'''
     if isinstance(obj, decimal.Decimal):
         if float(str(obj)).is_integer():
-            print('Found decimal to be int')
             return int(float(str(obj)))
         else:
             return float(str(obj))

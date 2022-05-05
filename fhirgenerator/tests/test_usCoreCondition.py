@@ -25,7 +25,7 @@ def testUSCoreConditionGenerator():
         assert created_resource['resourceType'] == 'Condition'
         assert created_resource['meta']['profile'][0] == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition'
         assert created_resource['clinicalStatus'] == {'coding': [{'system': 'http://terminology.hl7.org/CodeSystem/condition-clinical', 'code': 'active', 'display': 'Active'}]}
-        assert created_resource['category'] == [{'coding': [{'system': 'http://terminology.hl7.org/CodeSystem/condition-ver-status', 'code': 'confirmed'}]}]
+        assert created_resource['category'] == [{'coding': [{'system': 'http://terminology.hl7.org/CodeSystem/condition-category', 'code': 'problem-list-item'}]}]
         assert created_resource['code']['coding'][0] in detail['codes']
         assert (created_resource['onsetDateTime'] >= parser.parse(config_dict['startDate'])) and (created_resource['onsetDateTime'] <= parser.parse(config_dict['startDate']) + datetime.timedelta(days=config_dict['days']))
         assert created_resource['subject']['reference'] == f'Patient/{patient_id}'

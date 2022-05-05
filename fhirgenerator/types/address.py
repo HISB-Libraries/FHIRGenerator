@@ -30,7 +30,7 @@ def generateCityAddress():
 def generateStateAddress():
     '''Function for generating a state in a FHIR Address'''
     fake = Faker()
-    return fake.state()
+    return fake.state_abbr()
 
 
 def generatePostalCodeAddress():

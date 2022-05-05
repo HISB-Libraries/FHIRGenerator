@@ -54,8 +54,7 @@
                 { "system": "http://loinc.org", "code": "49498-9" },
                 { "system": "http://loinc.org", "code": "26464-8" },
                 { "system": "http://loinc.org", "code": "804-5" },
-                { "system": "http://loinc.org", "code": "6690-2" },
-                { "system": "http://www.ama-assn.org/go/cpt", "code": "85048" }
+                { "system": "http://loinc.org", "code": "6690-2" }
             ],
             "minValue": 4,
             "maxValue": 11,
@@ -109,7 +108,7 @@
             "minValue": 20,
             "maxValue": 150,
             "decimalValue": 2,
-            "unit": "http://unitsofmeasure.org^kg^kilogram",
+            "unit": "http://unitsofmeasure.org^[degF]^Degrees Fahrenheit",
             "minOccurrencesPerCycle": 1,
             "maxOccurrencesPerCycle": 2,
             "cycleLengthInDays": 365
@@ -119,7 +118,7 @@
             "minValue": 95,
             "maxValue": 102,
             "decimalValue": 1,
-            "unit": "http://unitsofmeasure.org^[degF]^Degrees Fahrenheit",
+            "unit": "http://unitsofmeasure.org^/min^Per Minute",
             "minOccurrencesPerCycle": 1,
             "maxOccurrencesPerCycle": 2,
             "cycleLengthInDays": 365

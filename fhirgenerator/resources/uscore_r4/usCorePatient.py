@@ -33,12 +33,12 @@ race_choices = [
     {
         'system': 'http://terminology.hl7.org/CodeSystem/v3-NullFlavor',
         'code': 'UNK',
-        'display': 'Unknonw'
+        'display': 'unknown'
     },
     {
         'system': 'http://terminology.hl7.org/CodeSystem/v3-NullFlavor',
         'code': 'ASKU',
-        'display': 'Asked but no answer'
+        'display': 'asked but unknown'
     }
 ]
 

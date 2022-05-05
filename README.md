@@ -119,7 +119,13 @@ Support currently exists for generating the following US Core STU4 Profiles:
 
 # History
 
-## 0.0.9 (unreleased)
+## 0.0.10
+
+* Removed superfluous print statement in helpers.helpers.default
+* Fixed state name generation to use 2 letter codes versus full name
+* Fixed US Core generation to be valid
+
+## 0.0.9
 
 * Add US Core Race and Ethnicity to US Core Patients
 
