@@ -3,12 +3,19 @@
 from faker import Faker
 
 
-def generateName(gender: str = 'U'):
-    '''Function to generate a FHIR HumanName based on gender'''
+def generateName(gender: str = 'U', use: str = 'official'):
+    '''Function to generate a FHIR HumanName based on gender and use'''
     human_name = {
+        'use': use,
         'family': generateFamilyName(),
         'given': [generateGivenName(gender)]
     }
+
+    if use == 'maiden':
+        del human_name['given']
+    elif use == 'usual':
+        del human_name['family']
+
     return human_name
 
 

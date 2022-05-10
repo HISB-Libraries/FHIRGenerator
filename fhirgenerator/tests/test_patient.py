@@ -17,9 +17,19 @@ def testPatientGenerator():
     assert created_resource['resourceType'] == 'Patient'
     assert created_resource['gender'] == 'female'
     assert calculateAge(created_resource['birthDate'], start=patient_config['startDate']) == patient_config['age']
+
     assert isinstance(created_resource['name'], list)
+    for name in created_resource['name']:
+        assert name['use'] in ['official', 'maiden', 'usual']
+
     assert isinstance(created_resource['address'], list)
+    for address in created_resource['address']:
+        assert address['use'] in ['home', 'old']
+
     assert isinstance(created_resource['telecom'], list)
+    for telecom in created_resource['telecom']:
+        assert telecom['use'] in ['home', 'work', 'mobile']
+
     assert created_resource['identifier'][0]['system'] == 'urn:fhirgen:mrn'
     assert created_resource['identifier'][0]['type']['coding'][0] == {'system': 'http://terminology.hl7.org/CodeSystem/v2-0203', 'code': 'MR'}
     assert len(created_resource['identifier'][0]['value']) == 11

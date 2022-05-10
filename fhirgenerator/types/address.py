@@ -2,17 +2,22 @@
 
 import random
 from faker import Faker
+from fhir.resources.address import Address
 
 
-def generateAddress() -> dict:
+def generateAddress(use: str = 'home') -> dict:
     '''Function for generating a FHIR Address'''
+
     address_data = {
+        'use': use,
         'line': [generateLineAddress()],
         'city': generateCityAddress(),
         'state': generateStateAddress(),
         'postalCode': generatePostalCodeAddress()
     }
-    return address_data
+
+    address = Address(**address_data).dict()
+    return address
 
 
 def generateLineAddress():

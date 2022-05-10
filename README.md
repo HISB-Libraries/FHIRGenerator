@@ -119,6 +119,14 @@ Support currently exists for generating the following US Core STU4 Profiles:
 
 # History
 
+## 0.1.0 (unreleased)
+
+* First minor release
+* Added chance for patient to have a maiden name (40% chance) or a usual name (60% chance)
+* Added chance for patient to have an old address (25% chance)
+* Updated Address.py to use fhir.resources typed Address
+* Created ContactPoint generator to generate ContactPoint data types
+
 ## 0.0.10
 
 * Removed superfluous print statement in helpers.helpers.default
