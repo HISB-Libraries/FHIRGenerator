@@ -117,15 +117,30 @@ Support currently exists for generating the following US Core STU4 Profiles:
     * US Core Head Circumference
     * US Core Body Height
 
+## Extending the FHIR Generator Package
+
+### Command Line Tooling
+
+The package supports a command line function for generating a template file for easier time extending this package. Similar to Angular's `ng new component {name}`, the command line tool uses the following format:
+
+```fhirgenerator new profile {resource_type} {profile_name}```
+
+Where:
+
+* `resource_type` is going to be which resource you would be building a generator for (examples include observation and condition)
+* `profile_name` is the name of the profile for which you are building a generator for
+
 # History
 
-## 0.1.0 (unreleased)
+## 0.1.0
 
 * First minor release
 * Added chance for patient to have a maiden name (40% chance) or a usual name (60% chance)
 * Added chance for patient to have an old address (25% chance)
 * Updated Address.py to use fhir.resources typed Address
 * Created ContactPoint generator to generate ContactPoint data types
+    * Patients will all have phone numbers and 90% of them will have emails
+* Added command line functionality for generating a template file for extending the package. See above section "Extending the FHIR Generator Package" for usage instructions
 
 ## 0.0.10
 

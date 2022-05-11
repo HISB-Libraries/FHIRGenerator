@@ -26,5 +26,8 @@ setuptools.setup(
     ],
     packages=setuptools.find_packages(),
     python_requires=">=3.10",
-    package_data={'fhirgenerator.tests.input': ['config.json']}
+    package_data={'fhirgenerator.tests.input': ['config.json']},
+    entry_points={
+        'console_scripts': ['fhirgenerator=fhirgenerator.command_line:main']
+    }
 )
