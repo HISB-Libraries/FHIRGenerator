@@ -73,13 +73,16 @@ def handleValueTypes(detail, decimal_value=None):
     '''Determine value[x] type for resource generation'''
     if 'enumSetList' in detail:
         enum_set_list = detail['enumSetList']
-        if isinstance(enum_set_list[0], dict):
-            if 'system' in enum_set_list[0]:
-                value_x_type = 'CodeableConcept'
-                value_x_value = random.choice(enum_set_list)
-            elif 'value' in enum_set_list[0]:
-                value_x_type = 'Quantity'
-                value_x_value = random.choice(enum_set_list)
+
+        if 'value' in enum_set_list[0]:
+            value_x_type = 'Quantity'
+            value_x_value = random.choice(enum_set_list)
+        elif 'coding' in enum_set_list[0]:
+            value_x_type = 'CodeableConcept'
+            value_x_value = random.choice(enum_set_list)
+        elif enum_set_list[0].isnumeric():
+            value_x_type = 'Integer'
+            value_x_value = random.choice(enum_set_list)
         elif len(enum_set_list[0].split(':')) > 1:
             value_x_type = 'Ratio'
             value_x_titer_choice = random.choice(enum_set_list)
@@ -88,9 +91,7 @@ def handleValueTypes(detail, decimal_value=None):
                 'numerator': {'value': value_x_titer_choice_split[0]},
                 'denominator': {'value': value_x_titer_choice_split[1]}
             }
-        elif enum_set_list[0].isnumeric():
-            value_x_type = 'Integer'
-            value_x_value = random.choice(enum_set_list)
+
         else:
             value_x_type = 'String'
             value_x_value = random.choice(enum_set_list)

@@ -24,12 +24,12 @@ def testObservationGenerator():
 
         if 'enumSetList' in detail:
             enum_set_list = detail['enumSetList']
-            if len(enum_set_list[0].split(':')) > 1:
-                value_x_type = 'Ratio'
-            elif 'system' in enum_set_list[0]:
-                value_x_type = 'CodeableConcept'
-            elif 'value' in enum_set_list[0]:
+            if 'value' in enum_set_list[0]:
                 value_x_type = 'Quantity'
+            elif 'coding' in enum_set_list[0]:
+                value_x_type = 'CodeableConcept'
+            elif len(enum_set_list[0].split(':')) > 1:
+                value_x_type = 'Ratio'
             else:
                 value_x_type = 'String'
         elif 'decimalValue' in detail:
@@ -51,7 +51,7 @@ def testObservationGenerator():
             case 'Ratio':
                 assert str(created_resource['valueRatio']['numerator']['value']) + ':' + str(created_resource['valueRatio']['denominator']['value']) in detail['enumSetList']
             case 'CodeableConcept':
-                assert created_resource['valueCodeableConcept']['coding'][0] in detail['enumSetList']
+                assert created_resource['valueCodeableConcept'] in detail['enumSetList']
             case 'Quantity':
                 if 'enumSetList' in detail:
                     assert created_resource['valueQuantity'] in detail['enumSetList']

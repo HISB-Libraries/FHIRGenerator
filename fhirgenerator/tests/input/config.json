@@ -82,6 +82,22 @@
         {
             "fhirResource": "Observation",
             "codes": [
+                { "system": "http://loinc.org", "code": "49498-9" },
+                { "system": "http://loinc.org", "code": "26464-8" },
+                { "system": "http://loinc.org", "code": "804-5" },
+                { "system": "http://loinc.org", "code": "6690-2" },
+                { "system": "http://www.ama-assn.org/go/cpt", "code": "85048" }
+            ],
+            "enumSetList": [
+                { "coding": [{ "system": "snomed", "code": "123456", "display": "fake snomed" }] }
+            ],
+            "minOccurrencesPerCycle": 2,
+            "maxOccurrencesPerCycle": 3,
+            "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "Observation",
+            "codes": [
                 { "system": "http://loinc.org", "code": "49498-9" }
             ],
             "minOccurrencesPerCycle": 2,
