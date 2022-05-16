@@ -132,6 +132,11 @@ Where:
 
 # History
 
+## 0.1.1 (unreleased)
+
+* Added support for Observation.component generation (TODO: write information in README about how to use it)
+* Fixed testing suite to actually test different value[x] cases
+
 ## 0.1.0
 
 * First minor release

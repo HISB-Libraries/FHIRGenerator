@@ -34,8 +34,10 @@ def testObservationGenerator():
                 value_x_type = 'String'
         elif 'decimalValue' in detail:
             value_x_type = 'Quantity'
-        else:
+        elif 'minValue' in detail:
             value_x_type = 'Integer'
+        else:
+            value_x_type = 'None'
 
         created_resource = generateObservation(detail, patient_id, config_dict['startDate'], config_dict['days'])
 
@@ -46,26 +48,33 @@ def testObservationGenerator():
         assert created_resource['subject']['reference'] == f'Patient/{patient_id}'
 
         match value_x_type:
-            case ['Ratio']:
-                assert created_resource['valueRatio']['numerator'] + ':' + created_resource['valueRatio']['denominator'] in detail['enumSetList']
-            case ['CodeableConcept']:
+            case 'Ratio':
+                assert str(created_resource['valueRatio']['numerator']['value']) + ':' + str(created_resource['valueRatio']['denominator']['value']) in detail['enumSetList']
+            case 'CodeableConcept':
                 assert created_resource['valueCodeableConcept']['coding'][0] in detail['enumSetList']
-            case ['Quantity']:
+            case 'Quantity':
                 if 'enumSetList' in detail:
                     assert created_resource['valueQuantity'] in detail['enumSetList']
                 else:
                     assert created_resource['valueQuantity']['value'] <= detail['maxValue'] and created_resource['valueQuantity']['value'] >= detail['minValue']
-                    test_system, test_code, test_unit = detail['unit'].split('^')
-                    assert created_resource['valueQuantity']['system'] == test_system
-                    assert created_resource['valueQuantity']['code'] == test_code
-                    assert created_resource['valueQuantity']['unit'] == test_unit
-            case ['String']:
+                    if 'unit' in detail:
+                        test_system, test_code, test_unit = detail['unit'].split('^')
+                        assert created_resource['valueQuantity']['system'] == test_system
+                        assert created_resource['valueQuantity']['code'] == test_code
+                        assert created_resource['valueQuantity']['unit'] == test_unit
+            case 'String':
                 assert created_resource['valueString'] in detail['enumSetList']
-            case ['Integer']:
+            case 'Integer':
                 if 'enumSetList' in detail:
                     assert created_resource['valueInteger'] in detail['enumSetList']
                 else:
                     assert created_resource['valueInteger'] <= detail['maxValue'] and created_resource['valueInteger'] >= detail['minValue']
+            case 'None':
+                assert 'valueRatio' not in created_resource
+                assert 'valueCodeableConcept' not in created_resource
+                assert 'valueQuantity' not in created_resource
+                assert 'valueString' not in created_resource
+                assert 'valueInteger' not in created_resource
 
         with open(f'fhirgenerator/tests/output/test_observation_{i}.json', 'wb') as outfile:
             outfile.write(orjson.dumps(created_resource, default=default, option=orjson.OPT_NAIVE_UTC))
