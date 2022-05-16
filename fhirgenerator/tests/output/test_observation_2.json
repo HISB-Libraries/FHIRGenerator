@@ -1,1 +1,1 @@
-{"resourceType":"Observation","id":"666165f3-c53a-4100-8ad2-e430684d4e4a","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"49498-9"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"effectiveDateTime":"2022-01-18T00:00:00+00:00"}
+{"resourceType":"Observation","id":"acdeefb4-4c51-4506-a095-23fdefd3af50","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"49498-9"}]},"subject":{"reference":"Patient/26774-827647-736278-3737646"},"effectiveDateTime":"2022-01-04T00:00:00+00:00"}
