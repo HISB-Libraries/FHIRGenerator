@@ -33,7 +33,7 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
         'effectiveDateTime': str(random_date),
         f'value{value_x_type}': value_x_value
     }
-    
+
     if 'valueNone' in observation_data:
         del observation_data['valueNone']
 
@@ -51,6 +51,7 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
 
 
 def generateObservationComponent(component_detail):
+    '''Generate a component for an Observation'''
     component_code = random.choice(component_detail['codes'])
 
     value_x_type, value_x_value = handleValueTypes(component_detail)
@@ -69,6 +70,7 @@ def generateObservationComponent(component_detail):
 
 
 def handleValueTypes(detail, decimal_value=None):
+    '''Determine value[x] type for resource generation'''
     if 'enumSetList' in detail:
         enum_set_list = detail['enumSetList']
         if isinstance(enum_set_list[0], dict):
@@ -96,12 +98,12 @@ def handleValueTypes(detail, decimal_value=None):
         # Quantity or Integer Value
         min_value = detail['minValue']
         max_value = detail['maxValue']
-        if 'decimalValue' in  detail:
+        if 'decimalValue' in detail:
             decimal_value = detail['decimalValue']
 
         if 'unit' in detail:
             value_x_type, value_x_value = createValueQuantity(min_value, max_value, detail['unit'], decimal_value)
-        else: 
+        else:
             if decimal_value is not None:
                 value_x_type, value_x_value = createValueQuantity(min_value, max_value, None, decimal_value)
             else:
@@ -110,19 +112,20 @@ def handleValueTypes(detail, decimal_value=None):
         print("Warning: There was no enumSetList or (minValue and maxValue) in your configuration for this Observation. This Observation will not have a value[x].")
         value_x_type = 'None'
         value_x_value = ''
-    
+
     return value_x_type, value_x_value
 
 
-
 def createValueInteger(min_value, max_value):
-    type = "Integer"
+    '''Generate a valueInteger'''
+    type_string = "Integer"
     value = int(round(random.uniform(min_value, max_value)))
-    return type, value
+    return type_string, value
 
 
 def createValueQuantity(min_value, max_value, unit_coding=None, decimal=None):
-    type = "Quantity"
+    '''Generate a valueQuantity'''
+    type_string = "Quantity"
 
     value = random.uniform(min_value, max_value)
     if decimal is not None:
@@ -144,4 +147,4 @@ def createValueQuantity(min_value, max_value, unit_coding=None, decimal=None):
         }
 
     quantity = Quantity(**quantity_data).dict()
-    return type, quantity
+    return type_string, quantity
