@@ -22,22 +22,22 @@ def main():
 
     resource_type = args.resource_type
     profile_name = args.profile_name
-    output_file_text = f'''from fhirgenerator.resources.r4.{resource_type} import generate{resource_type.capitalize()}
-from fhir.resources.{resource_type} import {resource_type.capitalize()}
+    output_file_text = f'''from fhirgenerator.resources.r4.{resource_type.lower()} import generate{resource_type.capitalize()}
+from fhir.resources.{resource_type.lower()} import {resource_type.capitalize()}
 
 
 def generate{profile_name[:1].upper() + profile_name[1:]}(resource_detail, patient_id, start_date, days):
     # Pre-built template using the fhirgenerator command line tool
 
-    {resource_type} = {{}}
+    {resource_type.lower()} = {{}}
 
     # START CODE
 
     # END CODE
-    {resource_type} = generate{resource_type.capitalize()}(resource_detail, patient_id, start_date, days)
+    {resource_type.lower()} = generate{resource_type.capitalize()}(resource_detail, patient_id, start_date, days)
 
-    {resource_type} = {resource_type.capitalize()}(**{resource_type}).dict()
-    return {resource_type}
+    {resource_type.lower()} = {resource_type.capitalize()}(**{resource_type.lower()}).dict()
+    return {resource_type.lower()}
 '''
 
     if os.path.isfile(f'generate{profile_name}.py'):
