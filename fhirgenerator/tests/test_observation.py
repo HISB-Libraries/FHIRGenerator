@@ -71,4 +71,43 @@ def testObservationGenerator():
             outfile.write(orjson.dumps(created_resource, default=default, option=orjson.OPT_NAIVE_UTC))
 
 
+def testObservationComponentGenerator():
+    '''Test Observation Component Generator'''
+
+    with open('fhirgenerator/tests/input/config.json', 'rb') as infile:
+        config_dict = orjson.loads(infile.read())
+
+    resource_details = {
+        "fhirResource": "Observation",
+        "profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure"],
+        "codes": [
+            {"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel with all children optional"}
+        ],
+        "minOccurrencesPerCycle": 1,
+        "maxOccurrencesPerCycle": 1,
+        "cycleLengthInDays": 365,
+        "components": [
+            {
+                "codes": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}],
+                "minValue": 105,
+                "maxValue": 135,
+                "unit": "http://unitsofmeasure.org^mm[Hg]^mmHg"
+            },
+            {
+                "codes": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}],
+                "minValue": 65,
+                "maxValue": 95,
+                "unit": "http://unitsofmeasure.org^mm[Hg]^mmHg"
+            }
+        ]
+    }
+
+    patient_id = '26774-827647-736278-3737646'
+
+    created_resource = generateObservation(resource_details, patient_id, config_dict['startDate'], config_dict['days'])
+
+    with open('fhirgenerator/tests/output/test_observation_component.json', 'wb') as outfile:
+        outfile.write(orjson.dumps(created_resource, default=default, option=orjson.OPT_NAIVE_UTC))
+
+
 # TODO: write more observation tests for all possible value[x] that the package supports
