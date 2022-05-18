@@ -1,5 +1,6 @@
 '''File for handling all operations relating to the Location resource'''
 
+import uuid
 from faker import Faker
 from fhir.resources.location import Location
 from fhirgenerator.types.address import generateAddress
@@ -12,10 +13,13 @@ def generateLocation() -> dict:
 
     fake = Faker()
 
+    location_id = str(uuid.uuid4())
+
     location_dict = {
+        'id': location_id,
         'name': fake.company(),
         'status': 'active',
-        'telecom': generateContactPoint(),
+        'telecom': [generateContactPoint()],
         'address': generateAddress(use='work')
     }
 

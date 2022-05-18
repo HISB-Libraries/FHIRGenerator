@@ -72,8 +72,8 @@ def testObservationGenerator():
                 else:
                     assert created_resource['valueInteger'] <= detail['maxValue'] and created_resource['valueInteger'] >= detail['minValue']
             case 'DateTime':
-                assert created_resource['valueDateTime'] >= parser.parse(config_dict['startDate']) + datetime.timedelta(days=detail["dateRange"][0])
-                assert created_resource['valueDateTime'] <= parser.parse(config_dict['startDate']) + datetime.timedelta(days=detail["dateRange"][1])
+                assert created_resource['valueDateTime'] >= created_resource['effectiveDateTime'] + datetime.timedelta(days=detail["dateRange"][0])
+                assert created_resource['valueDateTime'] <= created_resource['effectiveDateTime'] + datetime.timedelta(days=detail["dateRange"][1])
             case 'None':
                 assert 'valueRatio' not in created_resource
                 assert 'valueCodeableConcept' not in created_resource

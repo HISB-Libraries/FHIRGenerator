@@ -117,9 +117,8 @@ def handleValueTypes(detail, effective_date_time: datetime = None, decimal_value
         else:
             date_type = 'datetime'
         value_x_type, value_x_value = createValueDateTime(effective_date_time, detail['dateRange'], date_type)
-
     else:
-        print("Warning: There was no enumSetList or (minValue and maxValue) in your configuration for this Observation. This Observation will not have a value[x].")
+        print("Warning: There was no enumSetList or (minValue and maxValue) or dateRange in your configuration for this Observation. This Observation will not have a value[x].")
         value_x_type = 'None'
         value_x_value = ''
 
