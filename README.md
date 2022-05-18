@@ -131,6 +131,7 @@ Support currently exists for generating the following US Core STU4 Profiles:
     * US Core BMI
     * US Core Head Circumference
     * US Core Body Height
+* US Core Location
 
 ## Extending the FHIR Generator Package
 
@@ -152,6 +153,7 @@ Where:
 * Added support for Observation.valueDateTime generation
 * Added support for Location generation
 * Added support for US Core Location generation
+* Added SSN identifier and marital status to Patients
 
 ## 0.1.1
 

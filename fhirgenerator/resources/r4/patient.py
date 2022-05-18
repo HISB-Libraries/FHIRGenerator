@@ -9,7 +9,7 @@ from fhirgenerator.types.contactPoint import generateContactPoint
 
 from fhirgenerator.types.humanName import generateName
 from fhirgenerator.types.address import generateAddress
-from fhirgenerator.types.identifier import generateMRNIdentifier
+from fhirgenerator.types.identifier import generateMRNIdentifier, generateSSNIdentifier
 
 gender_map = {
     'M': 'male',
@@ -17,6 +17,59 @@ gender_map = {
     'O': 'other',
     'U': 'unknown'
 }
+
+marital_status = [
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "A",
+        "display": "Annulled"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "D",
+        "display": "Divorced"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "I",
+        "display": "Interlocutory"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "L",
+        "display": "Legally Separated"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "M",
+        "display": "Married"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "P",
+        "display": "Polygamous"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "S",
+        "display": "Never Married"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "T",
+        "display": "Domestic partner"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "U",
+        "display": "unmarried"
+    },
+    {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+        "code": "W",
+        "display": "Widowed"
+    }
+]
 
 
 def generateBirthDateFromAge(age: int, startDate: str) -> str:
@@ -33,12 +86,13 @@ def generatePatient(configuration: dict) -> dict:
     patient_id = str(uuid.uuid4())
     patient_data = {
         'id': patient_id,
-        'identifier': [generateMRNIdentifier()],
+        'identifier': [generateMRNIdentifier(), generateSSNIdentifier()],
         'name': [generateName(gender=configuration['gender'], use='official')],
         'address': [generateAddress(use='home')],
         'telecom': [generateContactPoint(system='phone')],
         'gender': gender_map[configuration['gender'].upper()],
-        'birthDate': generateBirthDateFromAge(configuration['age'], configuration['startDate'])
+        'birthDate': generateBirthDateFromAge(configuration['age'], configuration['startDate']),
+        'maritalStatus': {'coding': [random.choice(marital_status)]}
     }
 
     # Handles if a Patient will have a usual or maiden name
