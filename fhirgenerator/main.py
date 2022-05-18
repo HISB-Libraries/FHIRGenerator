@@ -9,6 +9,7 @@ from fhirgenerator.resources.r4.condition import generateCondition
 from fhirgenerator.resources.r4.bundle import generateBundle
 from fhirgenerator.resources.r4.medicationStatement import generateMedicationStatement
 from fhirgenerator.resources.r4.procedure import generateProcedure
+from fhirgenerator.resources.r4.location import generateLocation
 
 from fhirgenerator.resources.uscore_r4.handleUSCore import handleUSCore
 from fhirgenerator.resources.uscore_r4.usCorePatient import generateUSCorePatient
@@ -55,24 +56,31 @@ def generateResources(config_dict: dict, bundle_type: str = 'collection') -> dic
             num_of_cycles = round(resource_detail['cycleLengthInDays'] / config_dict['days'])
             num_of_resources = randint(resource_detail['minOccurrencesPerCycle'], resource_detail['maxOccurrencesPerCycle']) * num_of_cycles
             resource_type = resource_detail['fhirResource']
+
             if (resource_type.lower()[0:6]) == 'uscore':
                 for k in range(0, num_of_resources):
                     bundle_entry_list.append(handleUSCore(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
-            elif resource_type == 'Observation':
-                for k in range(0, num_of_resources):
-                    bundle_entry_list.append(generateObservation(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
-            elif resource_type == 'Condition':
-                for k in range(0, num_of_resources):
-                    bundle_entry_list.append(generateCondition(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
-            elif resource_type == 'Procedure':
-                for k in range(0, num_of_resources):
-                    bundle_entry_list.append(generateProcedure(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
-            elif resource_type == 'MedicationStatement':
-                for k in range(0, num_of_resources):
-                    bundle_entry_list.append(generateMedicationStatement(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
-            elif resource_type == 'Encounter':
-                for k in range(0, num_of_resources):
-                    bundle_entry_list.append(generateEncounter(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+
+            match resource_type:
+                case 'Observation':
+                    for k in range(0, num_of_resources):
+                        bundle_entry_list.append(generateObservation(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+                case 'Condition':
+                    for k in range(0, num_of_resources):
+                        bundle_entry_list.append(generateCondition(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+                case 'Procedure':
+                    for k in range(0, num_of_resources):
+                        bundle_entry_list.append(generateProcedure(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+                case 'MedicationStatement':
+                    for k in range(0, num_of_resources):
+                        bundle_entry_list.append(generateMedicationStatement(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+                case 'Encounter':
+                    for k in range(0, num_of_resources):
+                        bundle_entry_list.append(generateEncounter(resource_detail, patient_resource['id'], config_dict['startDate'], config_dict['days']))
+                case 'Location':
+                    for k in range(0, num_of_resources):
+                        bundle_entry_list.append(generateLocation())
+
             final_bundle_entries.extend(bundle_entry_list)
 
         print(f'Patient number {j+1} generated')

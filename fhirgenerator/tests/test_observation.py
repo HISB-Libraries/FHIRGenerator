@@ -36,6 +36,8 @@ def testObservationGenerator():
             value_x_type = 'Quantity'
         elif 'minValue' in detail:
             value_x_type = 'Integer'
+        elif 'dateRange' in detail:
+            value_x_type = 'DateTime'
         else:
             value_x_type = 'None'
 
@@ -69,6 +71,9 @@ def testObservationGenerator():
                     assert created_resource['valueInteger'] in detail['enumSetList']
                 else:
                     assert created_resource['valueInteger'] <= detail['maxValue'] and created_resource['valueInteger'] >= detail['minValue']
+            case 'DateTime':
+                assert created_resource['valueDateTime'] >= parser.parse(config_dict['startDate']) + datetime.timedelta(days=detail["dateRange"][0])
+                assert created_resource['valueDateTime'] <= parser.parse(config_dict['startDate']) + datetime.timedelta(days=detail["dateRange"][1])
             case 'None':
                 assert 'valueRatio' not in created_resource
                 assert 'valueCodeableConcept' not in created_resource

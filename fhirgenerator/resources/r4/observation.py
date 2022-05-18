@@ -2,6 +2,7 @@
 
 import uuid
 import random
+import datetime
 from fhir.resources.observation import Observation, ObservationComponent
 from fhir.resources.quantity import Quantity
 
@@ -17,7 +18,7 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
 
     random_date = makeRandomDate(start_date, days)
 
-    value_x_type, value_x_value = handleValueTypes(resource_detail)
+    value_x_type, value_x_value = handleValueTypes(resource_detail, random_date)
 
     observation_data = {
         'id': observation_id,
@@ -69,7 +70,7 @@ def generateObservationComponent(component_detail):
     return component
 
 
-def handleValueTypes(detail, decimal_value=None):
+def handleValueTypes(detail, effective_date_time: datetime = None, decimal_value=None):
     '''Determine value[x] type for resource generation'''
     if 'enumSetList' in detail:
         enum_set_list = detail['enumSetList']
@@ -109,12 +110,29 @@ def handleValueTypes(detail, decimal_value=None):
                 value_x_type, value_x_value = createValueQuantity(min_value, max_value, None, decimal_value)
             else:
                 value_x_type, value_x_value = createValueInteger(min_value, max_value)
+    elif 'dateRange' in detail:
+        # DateTime Value
+        if 'dateType' in detail:
+            date_type = detail['dateType']
+        else:
+            date_type = 'datetime'
+        value_x_type, value_x_value = createValueDateTime(effective_date_time, detail['dateRange'], date_type)
+
     else:
         print("Warning: There was no enumSetList or (minValue and maxValue) in your configuration for this Observation. This Observation will not have a value[x].")
         value_x_type = 'None'
         value_x_value = ''
 
     return value_x_type, value_x_value
+
+
+def createValueDateTime(effective_date_time: datetime, date_range: list, date_type: str = 'dateTime'):
+    '''Generate a valueDateTime'''
+    type_string = 'DateTime'
+    offset = int(round(random.uniform(date_range[0], date_range[1])))
+    value = effective_date_time + datetime.timedelta(days=offset)
+
+    return type_string, value
 
 
 def createValueInteger(min_value, max_value):

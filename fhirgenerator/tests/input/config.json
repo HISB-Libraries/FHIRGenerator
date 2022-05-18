@@ -180,6 +180,17 @@
             "minOccurrencesPerCycle": 2,
             "maxOccurrencesPerCycle": 3,
             "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "Observation",
+            "codes": [
+                { "system": "http://loinc.org", "code": "81956-5" }
+            ],
+            "dateType": "dateTime",
+            "dateRange": [-100, 0],
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 1,
+            "cycleLengthInDays": 365
         }
     ]
 }

@@ -132,7 +132,13 @@ Where:
 
 # History
 
-## 0.1.1 (unreleased)
+## 0.1.2
+
+* Added support for Observation.valueDateTime generation
+* Added support for Location generation
+* Added support for US Core Location generation
+
+## 0.1.1
 
 * Added support for Observation.component generation (TODO: write information in README about how to use it)
 * Fixed testing suite to actually test different value[x] cases

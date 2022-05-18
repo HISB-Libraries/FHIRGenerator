@@ -8,6 +8,7 @@ from fhirgenerator.resources.uscore_r4.usCoreCondition import generateUSCoreCond
 from fhirgenerator.resources.uscore_r4.usCoreHeadCircumferenceObservation import generateUSCoreHeadCircumferenceObservation
 from fhirgenerator.resources.uscore_r4.usCoreHeartRateObservation import generateUSCoreHeartRateObservation
 from fhirgenerator.resources.uscore_r4.usCoreLabResultObservation import generateUSCoreLabResultObservation
+from fhirgenerator.resources.uscore_r4.usCoreLocation import generateUSCoreLocation
 
 
 def handleUSCore(resource_detail: dict, patient_id: str, start_date: str, days: str) -> dict:
@@ -31,5 +32,7 @@ def handleUSCore(resource_detail: dict, patient_id: str, start_date: str, days: 
             return_resource = generateUSCoreBodyTemperatureObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
         case 'USCoreHeartRateObservation':
             return_resource = generateUSCoreHeartRateObservation(detail=resource_detail, patient_id=patient_id, start_date=start_date, days=days)
+        case 'USCoreLocation':
+            return_resource = generateUSCoreLocation()
 
     return return_resource
