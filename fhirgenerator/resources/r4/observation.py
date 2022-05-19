@@ -45,17 +45,17 @@ def generateObservation(resource_detail: dict, patient_id: str, start_date: str,
     if 'components' in resource_detail:
         observation_data['component'] = []
         for component_details in resource_detail['components']:
-            observation_data['component'].append(generateObservationComponent(component_details))
+            observation_data['component'].append(generateObservationComponent(component_details, observation_data['effectiveDateTime']))
 
     observation_resource = Observation(**observation_data).dict()
     return observation_resource
 
 
-def generateObservationComponent(component_detail):
+def generateObservationComponent(component_detail, effective_date_time: datetime = None):
     '''Generate a component for an Observation'''
     component_code = random.choice(component_detail['codes'])
 
-    value_x_type, value_x_value = handleValueTypes(component_detail)
+    value_x_type, value_x_value = handleValueTypes(component_detail, effective_date_time)
 
     component_data = {
         'code': {

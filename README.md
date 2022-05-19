@@ -148,6 +148,10 @@ Where:
 
 # History
 
+## 0.1.3
+
+* Fixed valueDateTime generation in components
+
 ## 0.1.2
 
 * Added support for Observation.valueDateTime generation
