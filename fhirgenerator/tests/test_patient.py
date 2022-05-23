@@ -35,7 +35,6 @@ def testPatientGenerator():
     assert len(created_resource['identifier'][0]['value']) == 11
 
     assert created_resource['identifier'][1]['system'] == 'http://hl7.org/fhir/sid/us-ssn'
-    assert created_resource['identifier'][1]['type']['coding'][0] == {'system': 'http://terminology.hl7.org/CodeSystem/v2-0203', 'code': 'SS'}
     assert len(created_resource['identifier'][0]['value']) == 11
 
     assert created_resource['maritalStatus']['coding'][0] in marital_status

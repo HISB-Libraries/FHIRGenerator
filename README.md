@@ -148,6 +148,11 @@ Where:
 
 # History
 
+## 0.1.4
+
+* Fixed US Core Ethnicity Code Display
+* Removed Identifier.type from SSN Identifiers
+
 ## 0.1.3
 
 * Fixed valueDateTime generation in components

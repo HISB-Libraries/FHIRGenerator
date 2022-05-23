@@ -24,12 +24,6 @@ def generateSSNIdentifier() -> dict:
     fake = Faker()
     identifier_dict = {
         'system': 'http://hl7.org/fhir/sid/us-ssn',
-        'type': {'coding': [
-            {
-                'system': 'http://terminology.hl7.org/CodeSystem/v2-0203',
-                'code': 'SS'
-            }
-        ]},
         'value': fake.ssn()
     }
     return identifier_dict

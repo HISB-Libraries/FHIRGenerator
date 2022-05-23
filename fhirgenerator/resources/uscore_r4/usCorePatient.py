@@ -51,7 +51,7 @@ ethicity_choices = [
     {
         'system': 'urn:oid:2.16.840.1.113883.6.238',
         'code': '2186-5',
-        'display': 'Non Hispanic or Latino'
+        'display': 'Not Hispanic or Latino'
     }
 ]
 
