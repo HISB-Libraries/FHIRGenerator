@@ -1,7 +1,7 @@
 '''File for handling all operations relating to the US Core Laboratory Result Observation resource'''
 
 from fhirgenerator.resources.r4.observation import generateObservation
-
+from fhir.resources.observation import Observation
 
 def generateUSCoreLabResultObservation(detail: dict, patient_id: str, start_date: str, days: str) -> dict:
     '''Generate a US Core Lab Result Observation'''
@@ -13,4 +13,7 @@ def generateUSCoreLabResultObservation(detail: dict, patient_id: str, start_date
         "code": "laboratory",
         "display": "Laboratory"
     }]}]
+
+    observation_resource = Observation(**observation_resource).dict()
+
     return observation_resource
