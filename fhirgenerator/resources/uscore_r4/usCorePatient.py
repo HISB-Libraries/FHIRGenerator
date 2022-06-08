@@ -3,6 +3,7 @@
 import random
 from fhirgenerator.resources.r4.patient import generatePatient
 from fhir.resources.extension import Extension
+from fhir.resources.patient import Patient
 
 race_choices = [
     {
@@ -61,6 +62,9 @@ def generateUSCorePatient(config: dict) -> dict:
     patient_resource = generatePatient(config)
     patient_resource['meta'] = {'profile': ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient']}
     patient_resource['extension'] = [generateUSCoreRaceExtension(), generateUSCoreEthnicityExtension()]
+
+    patient_resource = Patient(**patient_resource).dict()
+    
     return patient_resource
 
 
