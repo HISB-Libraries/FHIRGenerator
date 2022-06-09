@@ -1,0 +1,29 @@
+{
+    "resourceType": "Organization",
+    "id": "d82b2b6b-0277-4d0c-83b9-375fc7491786",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
+        ]
+    },
+    "active": true,
+    "name": "Manning LLC",
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "+1-296-294-5852x7464",
+            "use": "mobile"
+        }
+    ],
+    "address": [
+        {
+            "use": "work",
+            "line": [
+                "102 Allison Expressway"
+            ],
+            "city": "Lake Alexisborough",
+            "state": "NH",
+            "postalCode": "72735"
+        }
+    ]
+}

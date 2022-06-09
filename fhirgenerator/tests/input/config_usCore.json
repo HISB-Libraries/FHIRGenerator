@@ -122,6 +122,12 @@
             "minOccurrencesPerCycle": 1,
             "maxOccurrencesPerCycle": 2,
             "cycleLengthInDays": 365
+        },
+        {
+            "fhirResource": "USCoreOrganization",
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 1,
+            "cycleLengthInDays": 365
         }
     ]
 }

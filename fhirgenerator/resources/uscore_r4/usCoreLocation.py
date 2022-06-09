@@ -3,7 +3,7 @@
 from fhirgenerator.resources.r4.location import generateLocation
 from fhir.resources.location import Location
 
-def generateUSCoreLocation(config: dict) -> dict:
+def generateUSCoreLocation() -> dict:
     '''Generate US Core Location Resource'''
 
     location_resource = generateLocation()

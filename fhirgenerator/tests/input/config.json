@@ -188,6 +188,12 @@
             "cycleLengthInDays": 365
         },
         {
+            "fhirResource": "Organization",
+            "minOccurrencesPerCycle": 1,
+            "maxOccurrencesPerCycle": 1,
+            "cycleLengthInDays": 365
+        },
+        {
             "fhirResource": "Observation",
             "codes": [
                 { "system": "http://loinc.org", "code": "81956-5" }
