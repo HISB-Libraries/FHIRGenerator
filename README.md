@@ -148,6 +148,10 @@ Where:
 
 # History
 
+## 0.1.5
+
+* Ensured that US Core resources are in the standard order to assist with external validation services
+
 ## 0.1.4
 
 * Fixed US Core Ethnicity Code Display
