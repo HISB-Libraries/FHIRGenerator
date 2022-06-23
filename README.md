@@ -1,5 +1,11 @@
 # FHIRGenerator
 
+<a href="https://pypi.python.org/pypi/fhirgenerator" rel="PyPi Package Link">![PyPi Package Link](https://img.shields.io/pypi/v/fhirgenerator.svg)</a>
+<a href="https://pypi.python.org/pypi/fhirgenerator" rel="Supported Python versions">![Supported Python versions](https://img.shields.io/pypi/pyversions/fhirgenerator.svg)</a>
+<a href="https://app.codecov.io/gh/SmartChartSuite/FHIRGenerator" rel="Code Coverage">![Code Coverage](https://codecov.io/gh/SmartChartSuite/FHIRGenerator/branch/main/graph/badge.svg)</a>
+[![Downloads](https://pepy.tech/badge/fhirgenerator)](https://pepy.tech/project/fhirgenerator)
+
+
 Python Package for FHIR Resource Generation
 
 ## How to Use this Generator

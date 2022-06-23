@@ -2,3 +2,4 @@ fhir.resources>=6.2.2
 Faker>=13.3.4
 orjson>=3.6.8
 pytest>=7.1.1
+pytest-cov>=3.0.0
