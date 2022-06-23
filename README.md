@@ -1,5 +1,8 @@
 # FHIRGenerator
 
+<a href="https://pypi.python.org/pypi/fhirgenerator" rel="PyPi Package Link">![PyPi Package Link](https://img.shields.io/pypi/v/fhirgenerator.svg)</a>
+<a href="https://pypi.python.org/pypi/fhirgenerator" rel="Supported Python versions">![Supported Python versions](https://img.shields.io/pypi/pyversions/fhirgenerator.svg)</a>
+
 Python Package for FHIR Resource Generation
 
 ## How to Use this Generator
